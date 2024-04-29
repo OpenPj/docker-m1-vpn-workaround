@@ -7,7 +7,7 @@ if sudo pfctl -a com.apple.internet-sharing/shared_v4 -s nat 2> /dev/null | grep
 then
         echo && echo "Not applying change"
 else
-        echo "nat on $UTUN_INTF inet from 192.168.64.0/24 to any -> ($UTUN_INTF) extfilter ei" >> /tmp/docker_vpn.conf
+        echo "nat on $UTUN_INTF inet from 192.168.64.0/24 to any -> ($UTUN_INTF:0) extfilter ei" >> /tmp/docker_vpn.conf
         sudo pfctl -a com.apple.internet-sharing/shared_v4 -N -f /tmp/docker_vpn.conf 2> /dev/null
         echo && echo "## New Configuration"
         cat /tmp/docker_vpn.conf
